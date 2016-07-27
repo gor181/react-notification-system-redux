@@ -1,6 +1,6 @@
 {
   "name": "react-notification-system-redux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react-notification-system-redux",
   "main": "lib/notifications.js",
   "author": "Goran Udosic",
