@@ -1,0 +1,51 @@
+{
+  "name": "react-notification-system-redux",
+  "version": "1.0.0",
+  "description": "react-notification-system-redux",
+  "main": "lib/notifications.js",
+  "author": "Goran Udosic",
+  "homepage": "https://github.com/gor181/react-notification-system-redux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gor181/react-notification-system-redux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gor181/react-notification-system-redux/issues"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.3",
+    "eslint": "^1.6.0",
+    "eslint-plugin-react": "^3.5.1",
+    "gulp": "^3.9.0",
+    "react": "^0.14 || ^15.0.0-rc || ^15.0",
+    "react-dom": "^0.14 || ^15.0.0-rc || ^15.0",
+    "react-component-gulp-tasks": "^0.7.6",
+    "lodash": "^4.14.0",
+    "react-notification-system": "^0.2.7",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "dependencies": {
+    "react": "^0.14 || ^15.0.0-rc || ^15.0",
+    "react-dom": "^0.14 || ^15.0.0-rc || ^15.0",
+    "react-notification-system": "^0.2.7",
+    "lodash": "^4.14.0"
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  },
+  "scripts": {
+    "build": "gulp clean && NODE_ENV=production gulp build",
+    "examples": "gulp dev:server",
+    "lint": "eslint ./; true",
+    "publish:site": "NODE_ENV=production gulp publish:examples",
+    "release": "NODE_ENV=production gulp release",
+    "start": "gulp dev",
+    "test": "echo \"no tests yet\" && exit 0",
+    "watch": "gulp watch:lib"
+  },
+  "keywords": [
+    "react",
+    "react-component"
+  ]
+}

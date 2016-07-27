@@ -1,0 +1,32 @@
+{
+  "name": "react-notification-system-redux",
+  "version": "0.0.0",
+  "description": "Redux wrapper for react-notification-system",
+  "main": "dist/react-notification-system-redux.min.js",
+  "homepage": "https://github.com/gor181/react-notification-system-redux",
+  "authors": [
+    "Goran Udosic"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react-notification-system",
+    "redux",
+    "notifications",
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
