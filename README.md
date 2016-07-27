@@ -80,7 +80,6 @@ Dispatch notification actions from any other component:
 
 ```
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
 
 import Notifications from 'react-notification-system-redux';
@@ -114,14 +113,14 @@ class OtherComponent extends React.Component {
   render() {
     const {notifications} = this.props;
 
-		return (
-	    <div>
+    return (
+      <div>
         <button onClick={this.handleClick}>
           Spawn some notifications!!!
         </button>
       </div>
-		);
-	}
+    );
+  }
 }
 
 OtherComponent.contextTypes = {
