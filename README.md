@@ -6,7 +6,7 @@ Open for PR's and contributions!
 
 ## Demo & Examples
 
-Live demo: [gor181.github.io/react-notification-system-redux](http://gor181.github.io/rreact-notification-system-redux/)
+Live demo: [gor181.github.io/react-notification-system-redux](http://gor181.github.io/react-notification-system-redux/)
 
 To build the examples locally, run:
 
