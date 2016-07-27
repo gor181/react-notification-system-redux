@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.notifications = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -16670,7 +16670,39 @@ var RNS_HIDE_NOTIFICATION = 'RNS_HIDE_NOTIFICATION';
 exports.RNS_HIDE_NOTIFICATION = RNS_HIDE_NOTIFICATION;
 
 },{}],4:[function(require,module,exports){
-(function (global){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports['default'] = Notifications;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
+var _lodash = require('lodash');
+
+var _const = require('./const');
+
+function Notifications(state, action) {
+  if (state === undefined) state = [];
+
+  switch (action.type) {
+    case _const.RNS_SHOW_NOTIFICATION:
+      return [].concat(_toConsumableArray(state), [_extends({}, (0, _lodash.omit)(action, 'type'), { uid: action.uid || Date.now() })]);
+    case _const.RNS_HIDE_NOTIFICATION:
+      return (0, _lodash.filter)(state, function (notification) {
+        return notification.uid !== action.uid;
+      });
+  }
+  return state;
+}
+
+module.exports = exports['default'];
+
+},{"./const":3,"lodash":1}],"react-notification-system-redux":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -16693,7 +16725,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var _lodash = require('lodash');
 
-var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -16764,39 +16796,4 @@ Notifications.contextTypes = {
 exports['default'] = (0, _lodash.extend)(Notifications, actions, { reducer: _reducer2['default'] });
 module.exports = exports['default'];
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./actions":2,"./reducer":5,"lodash":1,"react-notification-system":undefined}],5:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports['default'] = Notifications;
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
-var _lodash = require('lodash');
-
-var _const = require('./const');
-
-function Notifications(state, action) {
-  if (state === undefined) state = [];
-
-  switch (action.type) {
-    case _const.RNS_SHOW_NOTIFICATION:
-      return [].concat(_toConsumableArray(state), [_extends({}, (0, _lodash.omit)(action, 'type'), { uid: action.uid || Date.now() })]);
-    case _const.RNS_HIDE_NOTIFICATION:
-      return (0, _lodash.filter)(state, function (notification) {
-        return notification.uid !== action.uid;
-      });
-  }
-  return state;
-}
-
-module.exports = exports['default'];
-
-},{"./const":3,"lodash":1}]},{},[4])(4)
-});
+},{"./actions":2,"./reducer":4,"lodash":1,"react":undefined,"react-notification-system":undefined}]},{},[]);
