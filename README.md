@@ -54,13 +54,13 @@ import Notifications from 'react-notification-system-redux';
 
 class DemoComponent extends React.Component {
 
-	render() {
+  render() {
     const {notifications} = this.props;
 
-		return (
+    return (
       <Notifications notifications={notifications} />
-		);
-	}
+    );
+  }
 }
 
 DemoComponent.contextTypes = {
@@ -111,7 +111,7 @@ class OtherComponent extends React.Component {
     );
   }
 
-	render() {
+  render() {
     const {notifications} = this.props;
 
 		return (
