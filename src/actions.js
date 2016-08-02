@@ -18,6 +18,7 @@ export function show(opts, level = 'success') {
   return {
     type: RNS_SHOW_NOTIFICATION,
     ...opts,
+    uid: opts.uid || Date.now(),
     level
   };
 }

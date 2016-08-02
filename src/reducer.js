@@ -7,7 +7,7 @@ export default function Notifications(state = [], action) {
     case RNS_SHOW_NOTIFICATION:
       return [
         ...state,
-        { ...omit(action, 'type'), uid: action.uid || Date.now() }
+        { ...omit(action, 'type'), uid: action.uid}
       ];
     case RNS_HIDE_NOTIFICATION:
       return filter(state, notification => {

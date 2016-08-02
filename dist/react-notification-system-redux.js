@@ -16631,6 +16631,7 @@ function show(opts) {
   return _extends({
     type: _const.RNS_SHOW_NOTIFICATION
   }, opts, {
+    uid: opts.uid || Date.now(),
     level: level
   });
 }
@@ -16787,7 +16788,7 @@ function Notifications(state, action) {
 
   switch (action.type) {
     case _const.RNS_SHOW_NOTIFICATION:
-      return [].concat(_toConsumableArray(state), [_extends({}, (0, _lodash.omit)(action, 'type'), { uid: action.uid || Date.now() })]);
+      return [].concat(_toConsumableArray(state), [_extends({}, (0, _lodash.omit)(action, 'type'), { uid: action.uid })]);
     case _const.RNS_HIDE_NOTIFICATION:
       return (0, _lodash.filter)(state, function (notification) {
         return notification.uid !== action.uid;
