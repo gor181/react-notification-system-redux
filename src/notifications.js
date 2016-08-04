@@ -30,8 +30,10 @@ class Notifications extends React.Component {
   }
 
   render() {
+    const {notifications, ...rest} = this.props;
+
     return (
-      <NotifySystem ref='notify' />
+      <NotifySystem ref='notify' { ...rest } />
     );
   }
 }
