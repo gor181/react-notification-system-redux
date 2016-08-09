@@ -1,16 +1,15 @@
-import {filter, omit} from 'lodash';
-
 import {RNS_SHOW_NOTIFICATION, RNS_HIDE_NOTIFICATION} from './const';
 
 export default function Notifications(state = [], action) {
   switch(action.type) {
     case RNS_SHOW_NOTIFICATION:
+      const { type, ...rest } = action;
       return [
         ...state,
-        { ...omit(action, 'type'), uid: action.uid}
+        { ...rest, uid: action.uid}
       ];
     case RNS_HIDE_NOTIFICATION:
-      return filter(state, notification => {
+      return state.filter(notification => {
         return notification.uid !== action.uid;
       });
   }

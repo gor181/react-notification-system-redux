@@ -1,4 +1,3 @@
-import {each, extend} from 'lodash';
 import React, {PropTypes} from 'react';
 
 import * as actions from './actions';
@@ -15,7 +14,7 @@ class Notifications extends React.Component {
   componentWillReceiveProps(nextProps) {
     const {notifications} = nextProps;
 
-    each(notifications, notification => {
+    notifications.forEach(notification => {
       this.system().addNotification({
         ...notification,
         onRemove: () => {
@@ -46,8 +45,11 @@ Notifications.contextTypes = {
   store: PropTypes.object
 };
 
-export default extend(
-  Notifications,
-  actions,
-  {reducer}
-);
+// Tie actions to Notifications component instance
+Object.keys(actions).forEach(key => {
+  Notifications[key] = actions[key];
+});
+
+Notifications.reducer = reducer;
+
+export default Notifications;
