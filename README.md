@@ -1,3 +1,5 @@
+[![build status](https://travis-ci.org/gor181/react-notification-system-redux.svg?branch=master)](https://travis-ci.org/gor181/react-notification-system-redux)  
+
 # react-notification-system-redux
 
 Wrapps [react-notification-system](https://github.com/igorprado/react-notification-system) into a component and exposes actions and reducer.  
