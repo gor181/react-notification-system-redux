@@ -30,7 +30,8 @@ var _const = require('./const');
 //   }
 // }
 
-function show(opts) {
+function show() {
+  var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
   var level = arguments.length <= 1 || arguments[1] === undefined ? 'success' : arguments[1];
 
   return _extends({
@@ -212,8 +213,9 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var _const = require('./const');
 
-function Notifications(state, action) {
-  if (state === undefined) state = [];
+function Notifications() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
   switch (action.type) {
     case _const.RNS_SHOW_NOTIFICATION:

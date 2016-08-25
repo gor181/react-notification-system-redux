@@ -14,7 +14,7 @@ import {RNS_SHOW_NOTIFICATION, RNS_HIDE_NOTIFICATION} from './const';
 //   }
 // }
 
-export function show(opts, level = 'success') {
+export function show(opts = {}, level = 'success') {
   return {
     type: RNS_SHOW_NOTIFICATION,
     ...opts,
