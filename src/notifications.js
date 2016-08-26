@@ -61,4 +61,4 @@ Object.keys(actions).forEach(key => {
 
 Notifications.reducer = reducer;
 
-export default Notifications;
+module.exports = Notifications;

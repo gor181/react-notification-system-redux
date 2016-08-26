@@ -72,10 +72,6 @@ var RNS_HIDE_NOTIFICATION = exports.RNS_HIDE_NOTIFICATION = 'RNS_HIDE_NOTIFICATI
 
 },{}],3:[function(require,module,exports){
 (function (global){
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -204,7 +200,7 @@ Object.keys(actions).forEach(function (key) {
 
 Notifications.reducer = _reducer2['default'];
 
-exports['default'] = Notifications;
+module.exports = Notifications;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./actions":1,"./reducer":4,"react-notification-system":undefined}],4:[function(require,module,exports){
