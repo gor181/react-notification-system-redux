@@ -1,19 +1,9 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -29,6 +19,14 @@ var _reactNotificationSystemRedux = require('react-notification-system-redux');
 
 var _reactNotificationSystemRedux2 = _interopRequireDefault(_reactNotificationSystemRedux);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var notificationOpts = {
   // uid: 'once-please', // you can specify your own uid if required
   title: 'Hey, it\'s good to see you!',
@@ -37,60 +35,78 @@ var notificationOpts = {
   autoDismiss: 0,
   action: {
     label: 'Click me!!',
-    callback: function callback() {
-      return alert('clicked!');
-    }
+    callback: function () {
+      function callback() {
+        return alert('clicked!');
+      }
+
+      return callback;
+    }()
   }
 };
 
-var Container = (function (_React$Component) {
+var Container = function (_React$Component) {
   _inherits(Container, _React$Component);
 
   function Container() {
     _classCallCheck(this, Container);
 
-    _get(Object.getPrototypeOf(Container.prototype), 'constructor', this).call(this);
+    var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this));
 
-    this.handleClick = this.handleClick.bind(this);
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
   }
 
   _createClass(Container, [{
     key: 'dispatchNotification',
-    value: function dispatchNotification(fn, timeout) {
-      var _this = this;
+    value: function () {
+      function dispatchNotification(fn, timeout) {
+        var _this2 = this;
 
-      setTimeout(function () {
-        _this.context.store.dispatch(fn(notificationOpts));
-      }, timeout);
-    }
+        setTimeout(function () {
+          _this2.context.store.dispatch(fn(notificationOpts));
+        }, timeout);
+      }
+
+      return dispatchNotification;
+    }()
   }, {
     key: 'handleClick',
-    value: function handleClick() {
-      this.dispatchNotification(_reactNotificationSystemRedux2['default'].success, 250);
-      this.dispatchNotification(_reactNotificationSystemRedux2['default'].error, 500);
-      this.dispatchNotification(_reactNotificationSystemRedux2['default'].warning, 750);
-      this.dispatchNotification(_reactNotificationSystemRedux2['default'].info, 1000);
-    }
+    value: function () {
+      function handleClick() {
+        this.dispatchNotification(_reactNotificationSystemRedux2['default'].success, 250);
+        this.dispatchNotification(_reactNotificationSystemRedux2['default'].error, 500);
+        this.dispatchNotification(_reactNotificationSystemRedux2['default'].warning, 750);
+        this.dispatchNotification(_reactNotificationSystemRedux2['default'].info, 1000);
+      }
+
+      return handleClick;
+    }()
   }, {
     key: 'render',
-    value: function render() {
-      var notifications = this.props.notifications;
+    value: function () {
+      function render() {
+        var notifications = this.props.notifications;
 
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(
-          'button',
-          { onClick: this.handleClick },
-          'Spawn some notifications!!!'
-        ),
-        _react2['default'].createElement(_reactNotificationSystemRedux2['default'], { notifications: notifications })
-      );
-    }
+
+        return _react2['default'].createElement(
+          'div',
+          null,
+          _react2['default'].createElement(
+            'button',
+            { onClick: this.handleClick },
+            'Spawn some notifications!!!'
+          ),
+          _react2['default'].createElement(_reactNotificationSystemRedux2['default'], { notifications: notifications })
+        );
+      }
+
+      return render;
+    }()
   }]);
 
   return Container;
-})(_react2['default'].Component);
+}(_react2['default'].Component);
 
 Container.contextTypes = {
   store: _react.PropTypes.object
@@ -103,20 +119,9 @@ Container.propTypes = {
 exports['default'] = (0, _reactRedux.connect)(function (state) {
   return { notifications: state.notifications };
 })(Container);
-module.exports = exports['default'];
 
 },{"react":undefined,"react-dom":undefined,"react-notification-system-redux":undefined,"react-redux":13}],2:[function(require,module,exports){
-'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -130,47 +135,57 @@ var _reactRedux = require('react-redux');
 
 var _store = require('./store');
 
-var _componentsContainer = require('./components/container');
+var _container = require('./components/container');
 
-var _componentsContainer2 = _interopRequireDefault(_componentsContainer);
+var _container2 = _interopRequireDefault(_container);
 
 var _reactNotificationSystemRedux = require('react-notification-system-redux');
 
 var _reactNotificationSystemRedux2 = _interopRequireDefault(_reactNotificationSystemRedux);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var store = (0, _store.configureStore)();
 
 window.appStore = store; //In case you want to see what's inside by executing appStore in console;
 
-var App = (function (_React$Component) {
+var App = function (_React$Component) {
 	_inherits(App, _React$Component);
 
 	function App() {
 		_classCallCheck(this, App);
 
-		_get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
+		return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	}
 
 	_createClass(App, [{
 		key: 'render',
-		value: function render() {
-			return _react2['default'].createElement(
-				_reactRedux.Provider,
-				{ store: store },
-				_react2['default'].createElement(_componentsContainer2['default'], null)
-			);
-		}
+		value: function () {
+			function render() {
+				return _react2['default'].createElement(
+					_reactRedux.Provider,
+					{ store: store },
+					_react2['default'].createElement(_container2['default'], null)
+				);
+			}
+
+			return render;
+		}()
 	}]);
 
 	return App;
-})(_react2['default'].Component);
+}(_react2['default'].Component);
 
 _reactDom2['default'].render(_react2['default'].createElement(App, null), document.getElementById('app'));
 
 },{"./components/container":1,"./store":3,"react":undefined,"react-dom":undefined,"react-notification-system-redux":undefined,"react-redux":13}],3:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.configureStore = configureStore;
@@ -295,17 +310,8 @@ module.exports = invariant;
 },{}],6:[function(require,module,exports){
 var overArg = require('./_overArg');
 
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeGetPrototype = Object.getPrototypeOf;
-
-/**
- * Gets the `[[Prototype]]` of `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {null|Object} Returns the `[[Prototype]]`.
- */
-var getPrototype = overArg(nativeGetPrototype, Object);
+/** Built-in value references. */
+var getPrototype = overArg(Object.getPrototypeOf, Object);
 
 module.exports = getPrototype;
 
@@ -333,7 +339,7 @@ module.exports = isHostObject;
 
 },{}],8:[function(require,module,exports){
 /**
- * Creates a function that invokes `func` with its first argument transformed.
+ * Creates a unary function that invokes `func` with its argument transformed.
  *
  * @private
  * @param {Function} func The function to wrap.
@@ -388,10 +394,11 @@ var getPrototype = require('./_getPrototype'),
 var objectTag = '[object Object]';
 
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString = Function.prototype.toString;
+var funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
 var hasOwnProperty = objectProto.hasOwnProperty;
@@ -401,7 +408,7 @@ var objectCtorString = funcToString.call(Object);
 
 /**
  * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
 var objectToString = objectProto.toString;
@@ -415,8 +422,7 @@ var objectToString = objectProto.toString;
  * @since 0.8.0
  * @category Lang
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a plain object,
- *  else `false`.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
  * @example
  *
  * function Foo() {
