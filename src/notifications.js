@@ -28,6 +28,7 @@ class Notifications extends React.Component {
         ...notification,
         onRemove: () => {
           this.context.store.dispatch(actions.hide(notification.uid));
+          notification.onRemove && notification.onRemove();
         }
       });
     });

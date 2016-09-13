@@ -147,6 +147,7 @@ var Notifications = function (_React$Component) {
             onRemove: function () {
               function onRemove() {
                 _this2.context.store.dispatch(actions.hide(notification.uid));
+                notification.onRemove && notification.onRemove();
               }
 
               return onRemove;
