@@ -30,7 +30,7 @@ npm install react-notification-system-redux react-notification-system --save
 
 Import the reducer and pass it to your store:
 
-```
+``` javascript
 import {createStore, combineReducers} from 'redux';
 
 import {reducer as notifications} from 'react-notification-system-redux';
@@ -47,7 +47,7 @@ export function configureStore(initialState = {}) {
 
 Include the Notifications component and pass the data from the reducer by using `connect`:
 
-```
+``` javascript
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
@@ -96,7 +96,7 @@ export default connect(
 
 Dispatch notification actions from any other component:
 
-```
+``` javascript
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
