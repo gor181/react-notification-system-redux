@@ -129,8 +129,6 @@ class OtherComponent extends React.Component {
   }
 
   render() {
-    const {notifications} = this.props;
-
     return (
       <div>
         <button onClick={this.handleClick}>
