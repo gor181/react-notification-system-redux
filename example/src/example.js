@@ -5,7 +5,6 @@ import {Provider} from 'react-redux';
 import {configureStore} from './store';
 
 import Container from './components/container';
-import Notifications from 'react-notification-system-redux';
 
 const store = configureStore();
 
