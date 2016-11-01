@@ -55,7 +55,7 @@ Container.contextTypes = {
 };
 
 Container.propTypes = {
-  notifications: PropTypes.array
+  notifications: PropTypes.object
 };
 
 export default connect(

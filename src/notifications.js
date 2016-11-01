@@ -12,7 +12,7 @@ class Notifications extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {notifications} = nextProps;
+    const notifications = nextProps.notifications.toJS();
     const notificationIds = notifications.map(notification => notification.uid);
 
     // Get all active notifications from react-notification-system
@@ -48,7 +48,7 @@ class Notifications extends React.Component {
 }
 
 Notifications.propTypes = {
-  notifications: PropTypes.array
+  notifications: PropTypes.object
 };
 
 Notifications.contextTypes = {
