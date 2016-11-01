@@ -9,12 +9,12 @@ describe('NotificationsComponent', () => {
     expect(wrapper.children()).toBeDefined();
   });
 
-  it('should warn if prop:notifications is not array', () => {
+  it('should warn if prop:notifications is not object', () => {
     spyOn(console, 'error');
 
     const wrapper = shallow(<Component notifications={1} />);
     const warning = console.error.calls.argsFor(0)[0];
 
-    expect(warning).toMatch(/Invalid prop `notifications` of type `number` supplied to `Notifications`, expected `array`./);
+    expect(warning).toMatch(/Invalid prop `notifications` of type `number` supplied to `Notifications`, expected `object`./);
   });
 });
