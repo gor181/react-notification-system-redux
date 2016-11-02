@@ -164,4 +164,4 @@ Jed Watson for making react-component yo builder!
 ## License
 
 MIT Licensed  
-Copyright (c) 2016 Goran Udosic && Headstart App.
+Copyright (c) 2016 Goran Udosic
