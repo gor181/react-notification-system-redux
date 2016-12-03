@@ -139,10 +139,6 @@ var _container = require('./components/container');
 
 var _container2 = _interopRequireDefault(_container);
 
-var _reactNotificationSystemRedux = require('react-notification-system-redux');
-
-var _reactNotificationSystemRedux2 = _interopRequireDefault(_reactNotificationSystemRedux);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -184,7 +180,7 @@ var App = function (_React$Component) {
 
 _reactDom2['default'].render(_react2['default'].createElement(App, null), document.getElementById('app'));
 
-},{"./components/container":1,"./store":3,"react":undefined,"react-dom":undefined,"react-notification-system-redux":undefined,"react-redux":13}],3:[function(require,module,exports){
+},{"./components/container":1,"./store":3,"react":undefined,"react-dom":undefined,"react-redux":13}],3:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
   value: true
 });

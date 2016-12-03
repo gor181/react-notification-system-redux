@@ -105,10 +105,6 @@ function Notifications() {
 }
 
 },{"./const":2}],"react-notification-system-redux":[function(require,module,exports){
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -184,6 +180,7 @@ var Notifications = function (_React$Component) {
             onRemove: function () {
               function onRemove() {
                 _this2.context.store.dispatch(actions.hide(notification.uid));
+                notification.onRemove && notification.onRemove();
               }
 
               return onRemove;
@@ -237,6 +234,6 @@ Object.keys(actions).forEach(function (key) {
 
 Notifications.reducer = _reducer2['default'];
 
-exports['default'] = Notifications;
+module.exports = Notifications;
 
 },{"./actions":1,"./reducer":3,"react":undefined,"react-notification-system":undefined}]},{},[]);
