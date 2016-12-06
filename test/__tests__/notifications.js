@@ -8,9 +8,9 @@ import NotifySystem from 'react-notification-system';
 
 const createDOM = () => jsdom('<!doctype html><html><body><div></div></body></html>');
 
-describe.only('NotificationsComponent', () => {
+describe('NotificationsComponent', () => {
   let DOM;
-  
+
   const notification = {
     title: 'Hey, it\'s good to see you!',
     message: 'Now you can see how easy it is to use notifications in React!',
