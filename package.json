@@ -32,6 +32,7 @@
     "jest-cli": "^14.1.0",
     "jsdom": "^9.8.3",
     "lodash": "^4.14.2",
+    "mocha": "^3.2.0",
     "react": "^0.14 || ^15.0.0-rc || ^15.0",
     "react-addons-test-utils": "^15.3.1",
     "react-component-gulp-tasks": "git+https://github.com/gor181/react-component-gulp-tasks.git",
