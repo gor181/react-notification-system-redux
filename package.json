@@ -22,22 +22,26 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.13.0",
     "babel-preset-stage-2": "^6.13.0",
+    "babel-register": "^6.18.0",
     "babelify": "^7.3.0",
     "brfs": "^1.4.3",
+    "chai": "^3.5.0",
     "enzyme": "^2.4.1",
     "eslint": "^1.6.0",
     "eslint-plugin-react": "^3.5.1",
     "gulp": "^3.9.0",
-    "jest": "^14.1.0",
     "jest-cli": "^14.1.0",
+    "jsdom": "^9.8.3",
     "lodash": "^4.14.2",
+    "mocha": "^3.2.0",
     "react": "^0.14 || ^15.0.0-rc || ^15.0",
     "react-addons-test-utils": "^15.3.1",
     "react-component-gulp-tasks": "git+https://github.com/gor181/react-component-gulp-tasks.git",
     "react-dom": "^0.14 || ^15.0.0-rc || ^15.0",
     "react-notification-system": "^0.2.7",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "sinon": "^1.17.6"
   },
   "dependencies": {
     "react-notification-system": "^0.2.7"
@@ -56,14 +60,12 @@
     "publish:site": "NODE_ENV=production gulp publish:examples",
     "release": "NODE_ENV=production gulp release",
     "start": "gulp dev",
-    "test": "jest",
+    "test": "mocha test/__tests__/**/*",
+    "test-dev": "mocha test/__tests__/**/* --watch",
     "watch": "gulp watch:lib"
   },
   "keywords": [
-    "react",
-    "react-component"
-  ],
-  "jest": {
-    "automock": false
-  }
+    "react-notification-system",
+    "redux"
+  ]
 }
