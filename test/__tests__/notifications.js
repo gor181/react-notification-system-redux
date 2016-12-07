@@ -65,6 +65,31 @@ describe('NotificationsComponent', () => {
     expect(wrapper.html()).to.have.string(notification.message);
   });
 
+  it('should not add notification if it already exists based on the uid', () => {
+    const wrapper = mountComponent();
+
+    wrapper.setProps({
+      notifications: [
+        { ...notification, uid: 1, title: '1st' },
+        { ...notification, uid: 2, title: '2nd' },
+        { ...notification, uid: 3, title: '3rd' },
+        { ...notification, uid: 1, title: '4th' },
+        { ...notification, uid: 2, title: '5th' },
+        { ...notification, uid: 3, title: '6th' }
+      ]
+    });
+
+    const html = wrapper.html();
+
+    expect(html).to.have.string('1st');
+    expect(html).to.have.string('2nd');
+    expect(html).to.have.string('3rd');
+
+    expect(html).not.to.have.string('4th');
+    expect(html).not.to.have.string('5th');
+    expect(html).not.to.have.string('6th');
+  });
+
   it('calls onRemove once the notification is auto dismissed', (done) => {
     const wrapper = mountComponent();
     const onRemove = sinon.spy();
