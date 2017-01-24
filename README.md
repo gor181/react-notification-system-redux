@@ -5,7 +5,7 @@
 
 # react-notification-system-redux
 
-Wrapps [react-notification-system](https://github.com/igorprado/react-notification-system) into a component and exposes actions and reducer.  
+Wraps [react-notification-system](https://github.com/igorprado/react-notification-system) into a component and exposes actions and reducer.  
 
 Open for PR's and contributions!
 
