@@ -17,7 +17,7 @@ describe('actions', () => {
     expect(Actions.success().uid).to.be.defined;
   });
 
-  if('sets the custom uid when provided', () => {
+  it('sets the custom uid when provided', () => {
     expect(Actions.success({ uid: 1 }).uid).to.equal(1);
   });
 });

@@ -22,6 +22,7 @@ class Container extends React.Component {
     super();
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
   }
 
   dispatchNotification(fn, timeout) {
@@ -37,13 +38,17 @@ class Container extends React.Component {
     this.dispatchNotification(Notifications.info, 1000);
   }
 
+  handleRemoveAll() {
+    this.context.store.dispatch(Notifications.removeAll());
+  }
+
 	render() {
     const {notifications} = this.props;
 
 		return (
 	    <div>
         <button onClick={this.handleClick}>Spawn some notifications!!!</button>
-
+        <button onClick={this.handleRemoveAll}>Remove all notifications</button>
         <Notifications notifications={notifications} />
       </div>
 		);

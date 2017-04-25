@@ -1,4 +1,4 @@
-import {RNS_SHOW_NOTIFICATION, RNS_HIDE_NOTIFICATION} from './const';
+import {RNS_SHOW_NOTIFICATION, RNS_HIDE_NOTIFICATION, RNS_REMOVE_ALL_NOTIFICATIONS} from './const';
 
 export default function Notifications(state = [], action = {}) {
   switch(action.type) {
@@ -12,6 +12,8 @@ export default function Notifications(state = [], action = {}) {
       return state.filter(notification => {
         return notification.uid !== action.uid;
       });
+    case RNS_REMOVE_ALL_NOTIFICATIONS:
+      return [];
   }
   return state;
 }

@@ -154,6 +154,19 @@ There is a working example in example/src/**
 ### Properties
 It accepts all properties as react-notification-system does, actually it pipes them in the react-notification-system.
 
+### Actions
+``` javascript
+import Notifications from 'react-notification-system-redux';
+
+dispatch(Notifications.show(notification, level));
+dispatch(Notifications.success(notification));
+dispatch(Notifications.error(notification));
+dispatch(Notifications.warning(notification));
+dispatch(Notifications.info(notification));
+dispatch(Notifications.removeAll()); // Removes all notifications
+```
+
+
 ## Development (`src`, `lib` and the build process)
 
 **NOTE:** The source code for the component is in `src`. A transpiled CommonJS version (generated with Babel) is available in `lib` for use with node.js, browserify and webpack. A UMD bundle is also built to `dist`, which can be included without the need for any build system.
