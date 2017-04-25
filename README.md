@@ -163,6 +163,7 @@ dispatch(Notifications.success(notification));
 dispatch(Notifications.error(notification));
 dispatch(Notifications.warning(notification));
 dispatch(Notifications.info(notification));
+dispatch(Notifications.hide(uid)); // Hides notification based on uid
 dispatch(Notifications.removeAll()); // Removes all notifications
 ```
 
