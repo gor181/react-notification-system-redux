@@ -24,4 +24,13 @@ describe('reducer', () => {
     const newState = Reducer(state, Actions.hide(uid));
     expect(newState.length).to.equal(0);
   });
+
+  it('removes all notifications', () => {
+    const state = Reducer([], Actions.success({ uid: 1 }));
+    const newState = Reducer(state, Actions.success({ uid: 2 }));
+    const emptyState = Reducer(newState, Actions.removeAll());
+
+    expect(newState.length).to.equal(2);
+    expect(emptyState.length).to.equal(0);
+  });
 });

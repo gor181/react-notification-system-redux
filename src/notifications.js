@@ -14,24 +14,32 @@ class Notifications extends React.Component {
   componentWillReceiveProps(nextProps) {
     const {notifications} = nextProps;
     const notificationIds = notifications.map(notification => notification.uid);
+    const systemNotifications = this.system().state.notifications || [];
 
-    // Get all active notifications from react-notification-system
-    /// and remove all where uid is not found in the reducer
-    (this.system().state.notifications || []).forEach(notification => {
-      if (notificationIds.indexOf(notification.uid) < 0) {
-        this.system().removeNotification(notification.uid);
-      }
-    });
-
-    notifications.forEach(notification => {
-      this.system().addNotification({
-        ...notification,
-        onRemove: () => {
-          this.context.store.dispatch(actions.hide(notification.uid));
-          notification.onRemove && notification.onRemove();
+    if (notifications.length > 0) {
+      // Get all active notifications from react-notification-system
+      /// and remove all where uid is not found in the reducer
+      (systemNotifications).forEach(notification => {
+        if (notificationIds.indexOf(notification.uid) < 0) {
+          console.log('removing', this.system().state.notifications);
+          this.system().removeNotification(notification.uid);
         }
       });
-    });
+
+      notifications.forEach(notification => {
+        this.system().addNotification({
+          ...notification,
+          onRemove: () => {
+            this.context.store.dispatch(actions.hide(notification.uid));
+            notification.onRemove && notification.onRemove();
+          }
+        });
+      });
+    }
+
+    if ((this.props.notifications !== notifications) && notifications.length === 0) {
+      this.system().clearNotifications();
+    }
   }
 
   shouldComponentUpdate(nextProps) {

@@ -44,7 +44,7 @@
     "sinon": "^1.17.6"
   },
   "dependencies": {
-    "react-notification-system": "^0.2.7"
+    "react-notification-system": "^0.2.x"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || ^15.0",
