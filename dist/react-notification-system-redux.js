@@ -11,6 +11,7 @@ exports.error = error;
 exports.warning = warning;
 exports.info = info;
 exports.hide = hide;
+exports.removeAll = removeAll;
 
 var _const = require('./const');
 
@@ -63,12 +64,17 @@ function hide(uid) {
   };
 }
 
+function removeAll() {
+  return { type: _const.RNS_REMOVE_ALL_NOTIFICATIONS };
+}
+
 },{"./const":2}],2:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var RNS_SHOW_NOTIFICATION = exports.RNS_SHOW_NOTIFICATION = 'RNS_SHOW_NOTIFICATION';
 var RNS_HIDE_NOTIFICATION = exports.RNS_HIDE_NOTIFICATION = 'RNS_HIDE_NOTIFICATION';
+var RNS_REMOVE_ALL_NOTIFICATIONS = exports.RNS_REMOVE_ALL_NOTIFICATIONS = 'RNS_REMOVE_ALL_NOTIFICATIONS';
 
 },{}],3:[function(require,module,exports){
 (function (global){
@@ -133,27 +139,35 @@ var Notifications = function (_React$Component) {
         var notificationIds = notifications.map(function (notification) {
           return notification.uid;
         });
+        var systemNotifications = this.system().state.notifications || [];
 
-        // Get all active notifications from react-notification-system
-        /// and remove all where uid is not found in the reducer
-        (this.system().state.notifications || []).forEach(function (notification) {
-          if (notificationIds.indexOf(notification.uid) < 0) {
-            _this2.system().removeNotification(notification.uid);
-          }
-        });
+        if (notifications.length > 0) {
+          // Get all active notifications from react-notification-system
+          /// and remove all where uid is not found in the reducer
+          systemNotifications.forEach(function (notification) {
+            if (notificationIds.indexOf(notification.uid) < 0) {
+              console.log('removing', _this2.system().state.notifications);
+              _this2.system().removeNotification(notification.uid);
+            }
+          });
 
-        notifications.forEach(function (notification) {
-          _this2.system().addNotification(_extends({}, notification, {
-            onRemove: function () {
-              function onRemove() {
-                _this2.context.store.dispatch(actions.hide(notification.uid));
-                notification.onRemove && notification.onRemove();
-              }
+          notifications.forEach(function (notification) {
+            _this2.system().addNotification(_extends({}, notification, {
+              onRemove: function () {
+                function onRemove() {
+                  _this2.context.store.dispatch(actions.hide(notification.uid));
+                  notification.onRemove && notification.onRemove();
+                }
 
-              return onRemove;
-            }()
-          }));
-        });
+                return onRemove;
+              }()
+            }));
+          });
+        }
+
+        if (this.props.notifications !== notifications && notifications.length === 0) {
+          this.system().clearNotifications();
+        }
       }
 
       return componentWillReceiveProps;
@@ -234,6 +248,8 @@ function Notifications() {
       return state.filter(function (notification) {
         return notification.uid !== action.uid;
       });
+    case _const.RNS_REMOVE_ALL_NOTIFICATIONS:
+      return [];
   }
   return state;
 }
