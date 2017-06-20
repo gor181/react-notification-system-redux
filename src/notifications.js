@@ -22,7 +22,6 @@ class Notifications extends React.Component {
       /// and remove all where uid is not found in the reducer
       (systemNotifications).forEach(notification => {
         if (notificationIds.indexOf(notification.uid) < 0) {
-          console.log('removing', this.system().state.notifications);
           this.system().removeNotification(notification.uid);
         }
       });
