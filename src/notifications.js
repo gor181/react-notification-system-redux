@@ -12,7 +12,7 @@ class Notifications extends React.Component {
     return this.refs.notify;
   }
 
-  componentWillReceiveProps(nextProps) {
+  updateNotificationSystem(nextProps) {
     const {notifications} = nextProps;
     const notificationIds = notifications.map(notification => notification.uid);
     const systemNotifications = this.system().state.notifications || [];
@@ -42,6 +42,14 @@ class Notifications extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.updateNotificationSystem(nextProps);
+  }
+
+  componentDidMount() {
+    this.updateNotificationSystem(this.props)
+  }
+
   shouldComponentUpdate(nextProps) {
     return this.props !== nextProps;
   }
@@ -50,7 +58,7 @@ class Notifications extends React.Component {
     const {notifications, ...rest} = this.props;
 
     return (
-      <NotifySystem ref='notify' { ...rest } />
+        <NotifySystem ref='notify' { ...rest } />
     );
   }
 }
