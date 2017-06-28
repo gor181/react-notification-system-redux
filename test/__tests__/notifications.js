@@ -56,7 +56,7 @@ describe('NotificationsComponent', () => {
 
   it('should assign defaultNotification for notifications', (done) => {
     const wrapper = mountComponent({
-        defaultNotification: { autoDismiss: 1 }
+        defaults: { autoDismiss: 1 }
     });
     const onRemove = sinon.spy();
     const shortNotification = {
