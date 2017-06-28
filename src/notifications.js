@@ -13,7 +13,7 @@ class Notifications extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {notifications} = nextProps;
+    const {notifications, defaultNotification} = nextProps;
     const notificationIds = notifications.map(notification => notification.uid);
     const systemNotifications = this.system().state.notifications || [];
 
@@ -27,6 +27,11 @@ class Notifications extends React.Component {
       });
 
       notifications.forEach(notification => {
+        if(defaultNotification) {
+          // assign defaultNotification for notification
+          notification = Object.assign(defaultNotification, notification);
+        }
+
         this.system().addNotification({
           ...notification,
           onRemove: () => {
@@ -56,6 +61,7 @@ class Notifications extends React.Component {
 }
 
 Notifications.propTypes = {
+  defaultNotification: PropTypes.object,
   notifications: PropTypes.array
 };
 

@@ -54,6 +54,31 @@ describe('NotificationsComponent', () => {
     expect(warning).to.match(/Invalid prop `notifications` of type `number` supplied to `Notifications`, expected `array`./);
   });
 
+  it('should assign defaultNotification for notifications', (done) => {
+    const wrapper = mountComponent({
+        defaultNotification: { autoDismiss: 1 }
+    });
+    const onRemove = sinon.spy();
+    const shortNotification = {
+        title: 'test',
+        message: 'test message',
+        level: 'info',
+        onRemove
+    };
+
+    wrapper.setProps({
+      notifications: [shortNotification]
+    });
+
+    expect(wrapper.html()).to.have.string(shortNotification.title);
+    expect(wrapper.html()).to.have.string(shortNotification.message);
+
+    setTimeout(() => {
+      expect(onRemove.called).to.be.true;
+      done();
+    }, 1100);
+  });
+
   it('should render a single notification', () => {
     const wrapper = mountComponent();
 
