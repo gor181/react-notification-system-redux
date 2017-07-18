@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
 
-import Notifications from 'react-notification-system-redux';
+import Notifications, { success, error, warning, info, removeAll } from 'react-notification-system-redux';
 
 const notificationOpts = {
   // uid: 'once-please', // you can specify your own uid if required
@@ -33,14 +33,14 @@ class Container extends React.Component {
   }
 
   handleClick() {
-    this.dispatchNotification(Notifications.success, 250);
-    this.dispatchNotification(Notifications.error, 500);
-    this.dispatchNotification(Notifications.warning, 750);
-    this.dispatchNotification(Notifications.info, 1000);
+    this.dispatchNotification(success, 250);
+    this.dispatchNotification(error, 500);
+    this.dispatchNotification(warning, 750);
+    this.dispatchNotification(info, 1000);
   }
 
   handleRemoveAll() {
-    this.context.store.dispatch(Notifications.removeAll());
+    this.context.store.dispatch(removeAll());
   }
 
 	render() {
