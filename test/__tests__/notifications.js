@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { expect } from 'chai';
 import { jsdom } from 'jsdom';
 import sinon from 'sinon';
-import Component from '../../src/notifications';
+import Component, { show, success, error, warning, info, hide, removeAll } from '../../src/notifications';
 import NotifySystem from 'react-notification-system';
 
 const createDOM = () => jsdom('<!doctype html><html><body><div></div></body></html>');
@@ -36,7 +36,17 @@ describe('NotificationsComponent', () => {
 
   beforeEach(() => {
     DOM = createDOM();
-  });
+	});
+	
+	it('exports all actions', () => {
+		expect(show).to.be.a('function');
+		expect(success).to.be.a('function');
+		expect(error).to.be.a('function');
+		expect(warning).to.be.a('function');
+		expect(info).to.be.a('function');
+		expect(hide).to.be.a('function');
+		expect(removeAll).to.be.a('function');
+	});
 
   it('should render one <NotifySystem /> component', () => {
     const wrapper = mountComponent();

@@ -29,3 +29,4 @@ example/dist
 *.sublime-*
 .idea/
 *.DS_Store
+.vscode

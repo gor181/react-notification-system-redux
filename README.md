@@ -103,7 +103,7 @@ Dispatch notification actions from any other component:
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
-import Notifications from 'react-notification-system-redux';
+import Notifications, { success } from 'react-notification-system-redux';
 
 const notificationOpts = {
   // uid: 'once-please', // you can specify your own uid if required
@@ -127,7 +127,7 @@ class OtherComponent extends React.Component {
 
   handleClick() {
     this.context.store.dispatch(
-      Notifications.success(notificationOpts)
+      success(notificationOpts)
     );
   }
 
@@ -165,6 +165,18 @@ dispatch(Notifications.warning(notification));
 dispatch(Notifications.info(notification));
 dispatch(Notifications.hide(uid)); // Hides notification based on uid
 dispatch(Notifications.removeAll()); // Removes all notifications
+
+// OR //
+
+import { show, success, error, warning, info, hide, removeAll } from 'react-notification-system-redux';
+
+dispatch(show(notification, level));
+dispatch(success(notification));
+dispatch(error(notification));
+dispatch(warning(notification));
+dispatch(info(notification));
+dispatch(hide(uid)); // Hides notification based on uid
+dispatch(removeAll()); // Removes all notifications
 ```
 
 
