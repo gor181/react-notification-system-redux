@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import * as actions from './actions';
-import reducer from './reducer';
 
 import NotifySystem from 'react-notification-system';
 
@@ -64,8 +63,8 @@ Notifications.contextTypes = {
 };
 
 
-// Tie actions to Notifications component instance
+// Export actions and reducer
 export * from './actions';
+export { default as reducer } from './reducer';
 
-Notifications.reducer = reducer;
 export default Notifications;
