@@ -63,11 +63,9 @@ Notifications.contextTypes = {
   store: PropTypes.object
 };
 
+
 // Tie actions to Notifications component instance
-Object.keys(actions).forEach(key => {
-  Notifications[key] = actions[key];
-});
+export * from './actions';
 
 Notifications.reducer = reducer;
-
-module.exports = Notifications;
+export default Notifications;
