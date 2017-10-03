@@ -1033,43 +1033,9 @@ var RNS_REMOVE_ALL_NOTIFICATIONS = exports.RNS_REMOVE_ALL_NOTIFICATIONS = 'RNS_R
 
 },{}],12:[function(require,module,exports){
 (function (global){
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.reducer = undefined;
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _actions = require('./actions');
-
-Object.keys(_actions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      function get() {
-        return _actions[key];
-      }
-
-      return get;
-    }()
-  });
-});
-
-var _reducer = require('./reducer');
-
-Object.defineProperty(exports, 'reducer', {
-  enumerable: true,
-  get: function () {
-    function get() {
-      return _interopRequireDefault(_reducer)['default'];
-    }
-
-    return get;
-  }()
-});
 
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
@@ -1079,7 +1045,13 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _actions = require('./actions');
+
 var actions = _interopRequireWildcard(_actions);
+
+var _reducer = require('./reducer');
+
+var _reducer2 = _interopRequireDefault(_reducer);
 
 var _reactNotificationSystem = require('react-notification-system');
 
@@ -1193,8 +1165,14 @@ Notifications.contextTypes = {
   store: _propTypes2['default'].object
 };
 
-// Export actions and reducer
-exports['default'] = Notifications;
+// Tie actions to Notifications component instance
+Object.keys(actions).forEach(function (key) {
+  Notifications[key] = actions[key];
+});
+
+Notifications.reducer = _reducer2['default'];
+
+module.exports = Notifications;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./actions":10,"./reducer":13,"prop-types":8,"react-notification-system":undefined}],13:[function(require,module,exports){
