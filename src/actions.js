@@ -1,4 +1,4 @@
-import {RNS_SHOW_NOTIFICATION, RNS_HIDE_NOTIFICATION, RNS_REMOVE_ALL_NOTIFICATIONS} from './const';
+import {RNS_SHOW_NOTIFICATION, RNS_HIDE_NOTIFICATION, RNS_REMOVE_ALL_NOTIFICATIONS, RNS_EDIT_NOTIFICATION } from './const';
 
 //Example opts
 // {
@@ -48,4 +48,8 @@ export function hide(uid) {
 
 export function removeAll() {
   return { type: RNS_REMOVE_ALL_NOTIFICATIONS };
+}
+
+export function editNotification(opts = {}){
+ return {type : RNS_EDIT_NOTIFICATION, opts }; 
 }
