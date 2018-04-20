@@ -165,10 +165,12 @@ dispatch(Notifications.warning(notification));
 dispatch(Notifications.info(notification));
 dispatch(Notifications.hide(uid)); // Hides notification based on uid
 dispatch(Notifications.removeAll()); // Removes all notifications
+dispatch(Notifications.removeAll()); // Removes all notifications
+dispatch(Notifications.editNotification(newNotification)); // Edit notification, newNotification must have same uid
 
 // OR //
 
-import { show, success, error, warning, info, hide, removeAll } from 'react-notification-system-redux';
+import { show, success, error, warning, info, hide, removeAll, editNotification } from 'react-notification-system-redux';
 
 dispatch(show(notification, level));
 dispatch(success(notification));
@@ -177,6 +179,7 @@ dispatch(warning(notification));
 dispatch(info(notification));
 dispatch(hide(uid)); // Hides notification based on uid
 dispatch(removeAll()); // Removes all notifications
+dispatch(editNotification(newNotification)); // Edit notification, newNotification must have same uid
 ```
 
 
