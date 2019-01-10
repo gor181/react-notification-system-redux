@@ -1,4 +1,5 @@
 import React from 'react';
+import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
 import { jsdom } from 'jsdom';
@@ -9,7 +10,8 @@ import NotifySystem from 'react-notification-system';
 const createDOM = () => jsdom('<!doctype html><html><body><div></div></body></html>');
 
 describe('NotificationsComponent', () => {
-  let DOM;
+	let DOM;
+	let store;
 
   const notification = {
     title: 'Hey, it\'s good to see you!',
@@ -18,10 +20,20 @@ describe('NotificationsComponent', () => {
     level: 'info',
     uid: 'demo-uid',
     autoDismiss: 5,
-  };
+	};
+	
+	beforeEach(() => {
+		const mockStore = configureStore();
+		store = mockStore({
+      notifications: []
+    });
+
+    DOM = createDOM();
+	});
 
   const mountComponent = props => mount(
     <Component
+			context={React.createContext({ store })}
       notifications={[]}
       {...props}
     />, {
@@ -33,10 +45,6 @@ describe('NotificationsComponent', () => {
       }
     }
   );
-
-  beforeEach(() => {
-    DOM = createDOM();
-	});
 	
 	it('exports all actions', () => {
 		expect(show).to.be.a('function');
@@ -73,7 +81,8 @@ describe('NotificationsComponent', () => {
 
     wrapper.setProps({
       notifications: [notification]
-    });
+		});
+		wrapper.update();
 
     expect(wrapper.html()).to.have.string(notification.title);
     expect(wrapper.html()).to.have.string(notification.message);
@@ -91,7 +100,8 @@ describe('NotificationsComponent', () => {
         { ...notification, uid: 2, title: '5th' },
         { ...notification, uid: 3, title: '6th' }
       ]
-    });
+		});
+		wrapper.update();
 
     const html = wrapper.html();
 
@@ -114,7 +124,8 @@ describe('NotificationsComponent', () => {
         autoDismiss: 1,
         onRemove
       }]
-    });
+		});
+		wrapper.update();
 
     setTimeout(() => {
       expect(onRemove.called).to.be.true;
@@ -137,8 +148,9 @@ describe('NotificationsComponent', () => {
         },
         onRemove
       }]
-    });
-
+		});		
+		wrapper.update();
+		
     wrapper.find('button').simulate('click');
 
     setTimeout(() => {
@@ -158,7 +170,8 @@ describe('NotificationsComponent', () => {
         autoDismiss: 1,
         onRemove
       }]
-    });
+		});
+		wrapper.update();
 
     setTimeout(() => {
       expect(onRemove.called).to.be.true;
@@ -182,8 +195,9 @@ describe('NotificationsComponent', () => {
         onRemove
       }]
     });
+		wrapper.update();
 
-    wrapper.find('button').simulate('click');
+		wrapper.find('button').simulate('click');		
 
     setTimeout(() => {
       expect(onCallback.called).to.be.true;

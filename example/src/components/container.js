@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ReactDOM from 'react-dom';
 
-import Notifications, { success, error, warning, info, removeAll } from 'react-notification-system-redux';
+import Notifications, { success, error, warning, info, removeAll } from '../../../src/notifications';
 
 const notificationOpts = {
   // uid: 'once-please', // you can specify your own uid if required
@@ -19,8 +18,8 @@ const notificationOpts = {
 
 class Container extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleClick = this.handleClick.bind(this);
     this.handleRemoveAll = this.handleRemoveAll.bind(this);
@@ -28,11 +27,12 @@ class Container extends React.Component {
 
   dispatchNotification(fn, timeout) {
     setTimeout(() => {
-      this.context.store.dispatch(fn(notificationOpts));
+      fn(notificationOpts);
     }, timeout);
   }
 
   handleClick() {
+    const { success, error, warning, info, removeAll } = this.props;
     this.dispatchNotification(success, 250);
     this.dispatchNotification(error, 500);
     this.dispatchNotification(warning, 750);
@@ -40,30 +40,34 @@ class Container extends React.Component {
   }
 
   handleRemoveAll() {
-    this.context.store.dispatch(removeAll());
+    this.props.removeAll();
   }
 
-	render() {
+  render() {
     const {notifications} = this.props;
 
-		return (
-	    <div>
+    return (
+      <div>
         <button onClick={this.handleClick}>Spawn some notifications!!!</button>
         <button onClick={this.handleRemoveAll}>Remove all notifications</button>
         <Notifications notifications={notifications} />
       </div>
-		);
-	}
+    );
+  }
 }
 
-Container.contextTypes = {
-  store: PropTypes.object
-};
-
 Container.propTypes = {
-  notifications: PropTypes.array
+  error: PropTypes.func.isRequired,
+  info: PropTypes.func.isRequired,
+  notifications: PropTypes.array,
+  removeAll: PropTypes.func.isRequired,
+  success: PropTypes.func.isRequired,
+  warning: PropTypes.func.isRequired
 };
 
 export default connect(
-  state => ({ notifications: state.notifications })
+  state => ({ notifications: state.notifications }),
+  {
+    success, error, warning, info, removeAll
+  }
 )(Container);
