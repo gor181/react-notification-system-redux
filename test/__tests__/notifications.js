@@ -227,4 +227,28 @@ describe('NotificationsComponent', () => {
 			done();
 		}, 50);
 	});
+  it('should assign defaultNotification for notifications', (done) => {
+    const wrapper = mountComponent({
+        defaults: { autoDismiss: 1 }
+    });
+    const onRemove = sinon.spy();
+    const shortNotification = {
+        title: 'test',
+        message: 'test message',
+        level: 'info',
+        onRemove
+    };
+
+    wrapper.setProps({
+      notifications: [shortNotification]
+    });
+
+    expect(wrapper.html()).to.have.string(shortNotification.title);
+    expect(wrapper.html()).to.have.string(shortNotification.message);
+
+    setTimeout(() => {
+      expect(onRemove.called).to.be.true;
+      done();
+    }, 1100);
+  });
 });
