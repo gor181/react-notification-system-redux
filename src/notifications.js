@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ReactReduxContext } from 'react-redux';
 
 import * as actions from './actions';
 import reducer from './reducer';
@@ -8,12 +9,18 @@ import NotifySystem from 'react-notification-system';
 
 class Notifications extends React.Component {
 
-  system() {
-    return this.refs.notify;
+  constructor (props) {
+    super(props);
+
+    this.notifyRef = React.createRef();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {notifications, defaults} = nextProps;
+  system() {
+    return this.notifyRef.current;
+  }
+
+  componentDidUpdate(prevProps) {
+    const {notifications, store, defaults} = this.props;
     const notificationIds = notifications.map(notification => notification.uid);
     const systemNotifications = this.system().state.notifications || [];
 
@@ -35,14 +42,14 @@ class Notifications extends React.Component {
         this.system().addNotification({
           ...notification,
           onRemove: () => {
-            this.context.store.dispatch(actions.hide(notification.uid));
+            store.dispatch(actions.hide(notification.uid));
             notification.onRemove && notification.onRemove();
           }
         });
       });
     }
 
-    if ((this.props.notifications !== notifications) && notifications.length === 0) {
+    if ((prevProps.notifications !== notifications) && notifications.length === 0) {
       this.system().clearNotifications();
     }
   }
@@ -52,28 +59,48 @@ class Notifications extends React.Component {
   }
 
   render() {
-    const {notifications, ...rest} = this.props;
+    const {notifications, store, ...rest} = this.props;
 
     return (
-      <NotifySystem ref='notify' { ...rest } />
+      <NotifySystem ref={this.notifyRef} { ...rest } />
     );
   }
 }
 
 Notifications.propTypes = {
   defaultNotification: PropTypes.object,
-  notifications: PropTypes.array
+  notifications: PropTypes.array,
+  store: PropTypes.shape({
+    dispatch: PropTypes.func.isRequired
+  }).isRequired
 };
 
-Notifications.contextTypes = {
-  store: PropTypes.object
+const NotificationsWithContext = props => {
+  const Context = props.context || ReactReduxContext;
+
+  if (Context == null) {
+    throw 'Please upgrade to react-redux v6';
+  }
+
+  return (
+    <Context.Consumer>
+      {(otherProps) => {
+        const { store } = otherProps;
+        return <Notifications store={store} {...props} />;
+      }}
+    </Context.Consumer>
+  );
+};
+
+NotificationsWithContext.propTypes = {
+  context: PropTypes.object,
 };
 
 // Tie actions to Notifications component instance
 Object.keys(actions).forEach(key => {
-  Notifications[key] = actions[key];
+  NotificationsWithContext[key] = actions[key];
 });
 
-Notifications.reducer = reducer;
+NotificationsWithContext.reducer = reducer;
 
-module.exports = Notifications;
+module.exports = NotificationsWithContext;
