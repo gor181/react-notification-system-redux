@@ -50,8 +50,8 @@
     "react-notification-system": "^0.2.x"
   },
   "peerDependencies": {
-    "react": ">=16.4.0-0",
-    "react-dom": ">=16.4.0-0",
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0",
     "react-redux": "^6.0.0 || ^7.0.0",
     "redux": "^3.6.0 || ^4.0.0"
   },
